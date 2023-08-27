@@ -1,5 +1,5 @@
 // src/utils/coolmode.ts
-// Credits: Adapted from https://github.com/rainbow-me/rainbowkit/blob/main/site/lib/useCoolMode.ts
+// Credits: Adapted from https://github.com/rainbow-me/rainbowkit/blob/main/site/lib/useParticleEffect.t
 import { useEffect, useRef, RefObject } from 'react';
 
 interface Particle {
@@ -23,7 +23,7 @@ interface ParticleOptions {
     spinVal?: number;
 }
 
-export const useCoolMode = (
+export const useParticleEffect = (
     imageUrl?: string,
     disabled: boolean = false,
     particleOptions?: ParticleOptions,
@@ -32,7 +32,7 @@ export const useCoolMode = (
 
     useEffect(() => {
         if (ref.current && imageUrl !== undefined) {
-            return makeElementCool(
+            return applyParticleEffect(
                 ref.current,
                 imageUrl,
                 disabled,
@@ -76,7 +76,7 @@ const getContainer = () => {
 
 let instanceCounter = 0;
 
-function makeElementCool(
+function applyParticleEffect(
     element: HTMLElement,
     imageUrl: string,
     disabled: boolean,
@@ -85,7 +85,7 @@ function makeElementCool(
     instanceCounter++;
 
     const sizes = [15, 20, 25, 35, 45];
-    const limit = 35;
+    const limit = 45;
 
     let particles: Particle[] = [];
     let autoAddParticle = false;
@@ -94,7 +94,7 @@ function makeElementCool(
 
     const container = getContainer();
 
-    function createParticle() {
+    function generateParticle() {
         const size =
             options?.size || sizes[Math.floor(Math.random() * sizes.length)];
         const speedHorz = options?.speedHorz || Math.random() * 10;
@@ -147,7 +147,7 @@ function makeElementCool(
         });
     }
 
-    function updateParticles() {
+    function refreshParticles() {
         particles.forEach((p) => {
             p.left = p.left - p.speedHorz * p.direction;
             p.top = p.top - p.speedUp;
@@ -178,21 +178,27 @@ function makeElementCool(
 
     let animationFrame: number | undefined;
 
+    let lastParticleTimestamp = 0;
+    const particleGenerationDelay = 30;
+
     function loop() {
-        if (autoAddParticle && particles.length < limit) {
-            createParticle();
+        const currentTime = performance.now();
+        if (
+            autoAddParticle &&
+            particles.length < limit &&
+            currentTime - lastParticleTimestamp > particleGenerationDelay
+        ) {
+            generateParticle();
+            lastParticleTimestamp = currentTime;
         }
 
-        updateParticles();
+        refreshParticles();
         animationFrame = requestAnimationFrame(loop);
     }
 
     loop();
 
-    const isTouchInteraction =
-        'ontouchstart' in window ||
-        // @ts-expect-error
-        navigator.msMaxTouchPoints;
+    const isTouchInteraction = 'ontouchstart' in window;
 
     const tap = isTouchInteraction ? 'touchstart' : 'mousedown';
     const tapEnd = isTouchInteraction ? 'touchend' : 'mouseup';
@@ -233,7 +239,7 @@ function makeElementCool(
         element.removeEventListener('mouseleave', disableAutoAddParticle);
 
         // Cancel animation loop once animations are done
-        let interval = setInterval(() => {
+        const interval = setInterval(() => {
             if (animationFrame && particles.length === 0) {
                 cancelAnimationFrame(animationFrame);
                 clearInterval(interval);

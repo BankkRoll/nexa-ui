@@ -17,5 +17,6 @@
         "allowSyntheticDefaultImports": true,
         "emitDeclarationOnly": false
     },
-    "include": ["src/**/*"]
+    "include": ["src/**/*"],
+    "exclude": ["**/*.stories.ts", "**/*.stories.tsx"]
 }

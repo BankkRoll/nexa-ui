@@ -1,7 +1,7 @@
 .button-default {
     padding: 1em 2em;
     font-size: 1rem;
-    border-radius: 5px;
+    border-radius: 0px;
     border: none;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     cursor: pointer;
@@ -14,6 +14,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    position: relative;
 }
 
 .button-default:hover {
@@ -87,4 +88,147 @@
     cursor: not-allowed;
     animation: spin 1s linear infinite;
     margin-left: 8px;
+}
+
+/* Rounded styles */
+.button-default.rounded-xs {
+    border-radius: 2px;
+}
+
+.button-default.rounded-sm {
+    border-radius: 4px;
+}
+
+.button-default.rounded-md {
+    border-radius: 8px;
+}
+
+.button-default.rounded-lg {
+    border-radius: 16px;
+}
+
+.button-default.rounded-xl {
+    border-radius: 24px;
+}
+
+.button-default.rounded-xxl {
+    border-radius: 32px;
+}
+
+.button-default.rounded-circle {
+    border-radius: 50%;
+}
+
+/* Variant styles */
+.button-default.primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.button-default.secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+/* Outline variant */
+.button-default.outline {
+    background-color: transparent;
+    border: 2px solid currentColor;
+}
+
+/* Shadow styles */
+.button-default.shadow-none {
+    box-shadow: none;
+}
+
+.button-default.shadow-sm {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.button-default.shadow-md {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.button-default.shadow-lg {
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* Icon styles */
+.icon {
+    margin-right: 8px;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* OnClick Animation */
+.button-default:active {
+    transform: translateY(1px) scale(0.98);
+}
+
+/* Variant styles */
+.button-default.success {
+    background-color: #28a745;
+    color: white;
+}
+
+.button-default.danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+.button-default.warning {
+    background-color: #ffc107;
+    color: black;
+}
+
+.button-default.info {
+    background-color: #17a2b8;
+    color: white;
+}
+
+/* Outline variant */
+.button-default.outline {
+    background-color: transparent;
+    border: 2px solid currentColor;
+    color: inherit;
+}
+
+/* plain variant */
+.button-default.plain {
+    background-color: transparent;
+    color: inherit;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+/* Outline variant for each type */
+.button-default.primary.outline {
+    border-color: #007bff;
+    color: #007bff;
+}
+
+.button-default.secondary.outline {
+    border-color: #6c757d;
+    color: #6c757d;
+}
+
+.button-default.success.outline {
+    border-color: #28a745;
+    color: #28a745;
+}
+
+.button-default.danger.outline {
+    border-color: #dc3545;
+    color: #dc3545;
+}
+
+.button-default.warning.outline {
+    border-color: #ffc107;
+    color: #ffc107;
+}
+
+.button-default.info.outline {
+    border-color: #17a2b8;
+    color: #17a2b8;
 }

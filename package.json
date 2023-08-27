@@ -1,6 +1,6 @@
 {
     "name": "nexaui",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "NexaUI is a easily customizable component library for React.",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -13,15 +13,29 @@
         "build-storybook": "storybook build",
         "prepublishOnly": "npm run format && npm run build"
     },
-    "author": "",
-    "license": "ISC",
+    "author": "bankkroll <https://twitter.com/bankkroll_eth>",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/BankkRoll/nexaui.git"
+    },
+    "bugs": {
+        "url": "https://github.com/BankkRoll/nexaui/issues"
+    },
+    "homepage": "https://www.npmjs.com/package/nexaui",
     "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^6.4.2",
+        "@fortawesome/free-regular-svg-icons": "^6.4.2",
+        "@fortawesome/free-solid-svg-icons": "^6.4.2",
+        "@fortawesome/react-fontawesome": "^0.2.0",
         "animate.css": "^4.1.1",
         "autoprefixer": "^10.4.15",
+        "font-awesome": "^4.7.0",
         "postcss": "^8.4.28",
         "react": "^18.2.0"
     },
     "devDependencies": {
+        "@storybook/addon-controls": "^7.3.2",
         "@storybook/addon-essentials": "^7.3.2",
         "@storybook/addon-interactions": "^7.3.2",
         "@storybook/addon-links": "^7.3.2",
