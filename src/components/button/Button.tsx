@@ -1,7 +1,7 @@
 // src/components/button/Button.tsx
 import React from 'react';
 import { useCoolMode } from '../../utils/coolmode';
-import './Button.css'; 
+import './Button.css';
 
 interface ParticleOptions {
     direction?: number;
@@ -17,39 +17,41 @@ interface ButtonProps extends ParticleOptions {
     imageUrl?: string;
     disabledCoolMode?: boolean;
     className?: string;
-    size?: "small" | "medium" | "large";
+    size?: 'small' | 'medium' | 'large';
     href?: string;
     disabled?: boolean;
     loading?: boolean;
 }
 
-const Button = ({ 
-    text, 
-    imageUrl, 
-    disabledCoolMode, 
-    className, 
-    size = "medium",
+const Button = ({
+    text,
+    imageUrl,
+    disabledCoolMode,
+    className,
+    size = 'medium',
     href,
     disabled,
     loading,
-    ...particleOptions 
+    ...particleOptions
 }: ButtonProps) => {
     const coolRef = useCoolMode(imageUrl, disabledCoolMode, particleOptions);
-    const combinedClassName = `button-default ${size} ${className || ''} ${loading ? 'loading' : ''} ${disabled ? 'disabled' : ''}`;
+    const combinedClassName = `button-default ${size} ${className || ''} ${
+        loading ? 'loading' : ''
+    } ${disabled ? 'disabled' : ''}`;
 
-    const content = loading 
-    ? (
+    const content = loading ? (
         <div className="loading-container">
-            Loading 
+            Loading
             <span className="spinner"></span>
         </div>
-    ) 
-    : text;
+    ) : (
+        text
+    );
 
     if (href) {
         return (
-            <a 
-                ref={coolRef as any} 
+            <a
+                ref={coolRef as any}
                 className={combinedClassName}
                 href={disabled ? undefined : href}
             >
@@ -59,14 +61,14 @@ const Button = ({
     }
 
     return (
-        <button 
-            ref={coolRef as any}  
+        <button
+            ref={coolRef as any}
             className={combinedClassName}
             disabled={disabled}
         >
             {content}
         </button>
     );
-}
+};
 
 export default Button;
