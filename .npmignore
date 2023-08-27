@@ -1,0 +1,14 @@
+.storybook/
+.storybook/**
+**/*.stories.tsx
+dist/components/stories/*.stories.*
+src/components/*/*.stories.tsx
+dist/stories/
+public/
+package-lock.json
+node_modules/
+storybook-static/
+tsconfig.json
+.prettierrc
+.eslintrc.js
+vercel.json
