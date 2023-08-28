@@ -18,12 +18,12 @@ import AnimateWrapper from '../../utils/animatewrapper';
 import './Button.css';
 import 'font-awesome/css/font-awesome.min.css';
 /**
- * A modern button component with cool particle effects.
+ * A advanced button component that supports animation, cool mode, exploded mode, drippy mode and much more.
  *
  * @param props The properties for the Button component.
  */
 var Button = function (_a) {
-    var text = _a.text, coolmode = _a.coolmode, _b = _a.explodedMode, explodedMode = _b === void 0 ? false : _b, _c = _a.drippyMode, drippyMode = _c === void 0 ? false : _c, className = _a.className, _d = _a.size, size = _d === void 0 ? 'medium' : _d, href = _a.href, disabled = _a.disabled, loading = _a.loading, rounded = _a.rounded, _e = _a.variant, variant = _e === void 0 ? 'primary' : _e, _f = _a.outline, outline = _f === void 0 ? false : _f, _g = _a.plain, plain = _g === void 0 ? false : _g, icon = _a.icon, shadow = _a.shadow, tooltip = _a.tooltip, animation = _a.animation, onClick = _a.onClick, animateOnClick = _a.animateOnClick, particleOptions = __rest(_a, ["text", "coolmode", "explodedMode", "drippyMode", "className", "size", "href", "disabled", "loading", "rounded", "variant", "outline", "plain", "icon", "shadow", "tooltip", "animation", "onClick", "animateOnClick"]);
+    var text = _a.text, coolMode = _a.coolMode, _b = _a.explodedMode, explodedMode = _b === void 0 ? false : _b, _c = _a.drippyMode, drippyMode = _c === void 0 ? false : _c, className = _a.className, _d = _a.size, size = _d === void 0 ? 'medium' : _d, href = _a.href, disabled = _a.disabled, loading = _a.loading, rounded = _a.rounded, _e = _a.variant, variant = _e === void 0 ? 'primary' : _e, _f = _a.outline, outline = _f === void 0 ? false : _f, _g = _a.plain, plain = _g === void 0 ? false : _g, icon = _a.icon, shadow = _a.shadow, tooltip = _a.tooltip, animation = _a.animation, onClick = _a.onClick, animateOnClick = _a.animateOnClick, particleOptions = __rest(_a, ["text", "coolMode", "explodedMode", "drippyMode", "className", "size", "href", "disabled", "loading", "rounded", "variant", "outline", "plain", "icon", "shadow", "tooltip", "animation", "onClick", "animateOnClick"]);
     var _h = useState(animation || null), currentAnimation = _h[0], setCurrentAnimation = _h[1];
     var handleClick = function (event) {
         if (onClick) {
@@ -38,10 +38,10 @@ var Button = function (_a) {
     };
     var drippyRef = useDrippyEffect(drippyMode);
     var explodedRef = useExplodedEffect(explodedMode);
-    var coolRef = useParticleEffect(typeof coolmode === 'string'
-        ? coolmode
-        : coolmode
-            ? 'coolmode'
+    var coolRef = useParticleEffect(typeof coolMode === 'string'
+        ? coolMode
+        : coolMode
+            ? 'coolMode'
             : undefined, particleOptions);
     var finalRef = drippyMode
         ? drippyRef

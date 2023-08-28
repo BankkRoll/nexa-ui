@@ -7,5 +7,5 @@ interface ParticleOptions {
     spinSpeed?: number;
     spinVal?: number;
 }
-export declare const useParticleEffect: (coolmode?: string, particleOptions?: ParticleOptions) => RefObject<HTMLButtonElement | HTMLAnchorElement>;
+export declare const useParticleEffect: (coolMode?: string, particleOptions?: ParticleOptions) => RefObject<HTMLButtonElement | HTMLAnchorElement>;
 export {};

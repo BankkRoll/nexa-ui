@@ -1,13 +1,13 @@
-// src/utils/coolmode.ts
+// src/utils/coolMode.ts
 // Credits: Adapted from https://github.com/rainbow-me/rainbowkit/blob/main/site/lib/useParticleEffect.t
 import { useEffect, useRef } from 'react';
-export var useParticleEffect = function (coolmode, particleOptions) {
+export var useParticleEffect = function (coolMode, particleOptions) {
     var ref = useRef(null);
     useEffect(function () {
-        if (ref.current && coolmode) {
-            return applyParticleEffect(ref.current, coolmode, particleOptions);
+        if (ref.current && coolMode) {
+            return applyParticleEffect(ref.current, coolMode, particleOptions);
         }
-    }, [coolmode, particleOptions]);
+    }, [coolMode, particleOptions]);
     return ref;
 };
 var getContainer = function () {
@@ -52,7 +52,7 @@ function applyParticleEffect(element, imageUrl, options) {
         var left = mouseX - size / 2;
         var direction = Math.random() <= 0.5 ? -1 : 1;
         var particle = document.createElement('div');
-        if (imageUrl === 'coolmode') {
+        if (imageUrl === 'coolMode') {
             var svgNS = 'http://www.w3.org/2000/svg';
             var circleSVG = document.createElementNS(svgNS, 'svg');
             var circle = document.createElementNS(svgNS, 'circle');

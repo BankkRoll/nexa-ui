@@ -19,12 +19,12 @@ const meta: Meta = {
             },
             defaultValue: 'Button',
         },
-        coolmode: {
+        coolMode: {
             control: {
                 type: 'text',
             },
             description:
-                'Either "coolmode" for random circles or provide a URL for a custom image for the cool mode',
+                'Use "coolMode" for random color circles, or directly a URL for custom image as coolMode={url}, or even as coolMode={coolMode}.',
         },
         direction: {
             control: {
@@ -406,13 +406,6 @@ export const LargeButton: Story = {
     },
 };
 
-export const PrimaryButton: Story = {
-    args: {
-        text: 'Primary Button',
-        variant: 'primary',
-    },
-};
-
 export const SecondaryButton: Story = {
     args: {
         text: 'Secondary Button',
@@ -550,21 +543,21 @@ export const ExplodedMode: Story = {
 export const CoolMode: Story = {
     args: {
         text: 'Button with Cool Mode',
-        coolmode: true,
+        coolMode: true,
     },
 };
 
 export const CoolModeWithImage: Story = {
     args: {
         text: 'Button with Custom Cool Mode',
-        coolmode: './custom.png',
+        coolMode: './custom.png',
     },
 };
 
 export const CoolModeCustomizations: Story = {
     args: {
         text: 'Button with Particle Customizations',
-        coolmode: true,
+        coolMode: true,
         direction: 4,
         particleSize: 100,
         speedHorz: 5,

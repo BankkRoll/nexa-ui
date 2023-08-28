@@ -24,7 +24,7 @@ interface ParticleOptions {
  */
 interface ButtonProps extends ParticleOptions {
     text?: string;
-    coolmode?: boolean | string;
+    coolMode?: boolean | string;
     explodedMode?: boolean;
     drippyMode?: boolean;
     className?: string;
@@ -51,13 +51,13 @@ interface ButtonProps extends ParticleOptions {
 }
 
 /**
- * A modern button component with cool particle effects.
+ * A advanced button component that supports animation, cool mode, exploded mode, drippy mode and much more.
  *
  * @param props The properties for the Button component.
  */
 const Button: React.FC<ButtonProps> = ({
     text,
-    coolmode,
+    coolMode,
     explodedMode = false,
     drippyMode = false,
     className,
@@ -96,10 +96,10 @@ const Button: React.FC<ButtonProps> = ({
     const drippyRef = useDrippyEffect(drippyMode);
     const explodedRef = useExplodedEffect(explodedMode);
     const coolRef = useParticleEffect(
-        typeof coolmode === 'string'
-            ? coolmode
-            : coolmode
-            ? 'coolmode'
+        typeof coolMode === 'string'
+            ? coolMode
+            : coolMode
+            ? 'coolMode'
             : undefined,
         particleOptions,
     );

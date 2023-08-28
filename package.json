@@ -1,6 +1,6 @@
 {
     "name": "nexa-ui",
-    "version": "1.0.12",
+    "version": "1.0.13",
     "description": "NexaUI is a easily customizable component library for React.",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",

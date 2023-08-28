@@ -1,4 +1,4 @@
-// src/utils/coolmode.ts
+// src/utils/coolMode.ts
 // Credits: Adapted from https://github.com/rainbow-me/rainbowkit/blob/main/site/lib/useParticleEffect.t
 import { useEffect, useRef, RefObject } from 'react';
 
@@ -24,16 +24,16 @@ interface ParticleOptions {
 }
 
 export const useParticleEffect = (
-    coolmode?: string,
+    coolMode?: string,
     particleOptions?: ParticleOptions,
 ) => {
     const ref: RefObject<HTMLButtonElement | HTMLAnchorElement> = useRef(null);
 
     useEffect(() => {
-        if (ref.current && coolmode) {
-            return applyParticleEffect(ref.current, coolmode, particleOptions);
+        if (ref.current && coolMode) {
+            return applyParticleEffect(ref.current, coolMode, particleOptions);
         }
-    }, [coolmode, particleOptions]);
+    }, [coolMode, particleOptions]);
     return ref;
 };
 
@@ -99,7 +99,7 @@ function applyParticleEffect(
 
         const particle = document.createElement('div');
 
-        if (imageUrl === 'coolmode') {
+        if (imageUrl === 'coolMode') {
             const svgNS = 'http://www.w3.org/2000/svg';
             const circleSVG = document.createElementNS(svgNS, 'svg');
             const circle = document.createElementNS(svgNS, 'circle');
