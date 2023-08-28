@@ -29,8 +29,13 @@
 }
 
 .button-default.disabled {
-    opacity: 0.5;
     cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.button-default.loading {
+    cursor: not-allowed;
+    opacity: 0.6;
 }
 
 .button-default.small {

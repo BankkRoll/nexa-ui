@@ -11,7 +11,7 @@ export var useParticleEffect = function (coolmode, particleOptions) {
     return ref;
 };
 var getContainer = function () {
-    var id = '_rk_site_coolMode';
+    var id = '_rk_coolMode';
     var existingContainer = document.getElementById(id);
     if (existingContainer) {
         return existingContainer;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { AnimationName } from '../../utils/animatewrapper';
 import './Button.css';
+import 'font-awesome/css/font-awesome.min.css';
 /**
  * Options for controlling the appearance and behavior of particles.
  */
@@ -18,6 +19,8 @@ interface ParticleOptions {
 interface ButtonProps extends ParticleOptions {
     text?: string;
     coolmode?: boolean | string;
+    explodedMode?: boolean;
+    drippyMode?: boolean;
     className?: string;
     size?: 'small' | 'medium' | 'large';
     href?: string;
@@ -31,6 +34,8 @@ interface ButtonProps extends ParticleOptions {
     shadow?: 'none' | 'sm' | 'md' | 'lg';
     tooltip?: string;
     animation?: AnimationName;
+    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+    animateOnClick?: AnimationName;
 }
 /**
  * A modern button component with cool particle effects.

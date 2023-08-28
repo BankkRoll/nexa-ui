@@ -150,6 +150,10 @@ const meta: Meta = {
             },
             description: 'Tooltip to show on button hover',
         },
+        onClick: {
+            action: 'clicked',
+            description: 'Event triggered when the button is clicked',
+        },
         animation: {
             control: {
                 type: 'select',
@@ -255,6 +259,111 @@ const meta: Meta = {
             },
             description: 'Animation effect on the button',
         },
+        animateOnClick: {
+            control: {
+                type: 'select',
+                options: [
+                    'bounce',
+                    'flash',
+                    'pulse',
+                    'rubberBand',
+                    'shakeX',
+                    'shakeY',
+                    'headShake',
+                    'swing',
+                    'tada',
+                    'wobble',
+                    'jello',
+                    'heartBeat',
+                    'backInDown',
+                    'backInLeft',
+                    'backInRight',
+                    'backInUp',
+                    'backOutDown',
+                    'backOutLeft',
+                    'backOutRight',
+                    'backOutUp',
+                    'bounceIn',
+                    'bounceInDown',
+                    'bounceInLeft',
+                    'bounceInRight',
+                    'bounceInUp',
+                    'bounceOut',
+                    'bounceOutDown',
+                    'bounceOutLeft',
+                    'bounceOutRight',
+                    'bounceOutUp',
+                    'fadeIn',
+                    'fadeInDown',
+                    'fadeInDownBig',
+                    'fadeInLeft',
+                    'fadeInLeftBig',
+                    'fadeInRight',
+                    'fadeInRightBig',
+                    'fadeInUp',
+                    'fadeInUpBig',
+                    'fadeInTopLeft',
+                    'fadeInTopRight',
+                    'fadeInBottomLeft',
+                    'fadeInBottomRight',
+                    'fadeOut',
+                    'fadeOutDown',
+                    'fadeOutDownBig',
+                    'fadeOutLeft',
+                    'fadeOutLeftBig',
+                    'fadeOutRight',
+                    'fadeOutRightBig',
+                    'fadeOutUp',
+                    'fadeOutUpBig',
+                    'fadeOutTopLeft',
+                    'fadeOutTopRight',
+                    'fadeOutBottomLeft',
+                    'fadeOutBottomRight',
+                    'flip',
+                    'flipInX',
+                    'flipInY',
+                    'flipOutX',
+                    'flipOutY',
+                    'lightSpeedInRight',
+                    'lightSpeedInLeft',
+                    'lightSpeedOutRight',
+                    'lightSpeedOutLeft',
+                    'rotateIn',
+                    'rotateInDownLeft',
+                    'rotateInDownRight',
+                    'rotateInUpLeft',
+                    'rotateInUpRight',
+                    'rotateOut',
+                    'rotateOutDownLeft',
+                    'rotateOutDownRight',
+                    'rotateOutUpLeft',
+                    'rotateOutUpRight',
+                    'hinge',
+                    'jackInTheBox',
+                    'rollIn',
+                    'rollOut',
+                    'zoomIn',
+                    'zoomInDown',
+                    'zoomInLeft',
+                    'zoomInRight',
+                    'zoomInUp',
+                    'zoomOut',
+                    'zoomOutDown',
+                    'zoomOutLeft',
+                    'zoomOutRight',
+                    'zoomOutUp',
+                    'slideInDown',
+                    'slideInLeft',
+                    'slideInRight',
+                    'slideInUp',
+                    'slideOutDown',
+                    'slideOutLeft',
+                    'slideOutRight',
+                    'slideOutUp',
+                ],
+            },
+            description: 'Animation effect on the button when clicked',
+        },
     },
 };
 
@@ -269,24 +378,73 @@ export const Default: Story = {
     },
 };
 
-export const ButtonSizes: Story = {
+export const RoundedSM: Story = {
+    args: {
+        text: 'Rounded Button',
+        rounded: 'sm',
+    },
+};
+
+export const RoundedLG: Story = {
+    args: {
+        text: 'Rounded Button',
+        rounded: 'lg',
+    },
+};
+
+export const SmallButton: Story = {
     args: {
         text: 'Small Button',
         size: 'small',
     },
 };
 
-export const RoundedButtons: Story = {
+export const LargeButton: Story = {
     args: {
-        text: 'Rounded Button',
-        rounded: 'xl',
+        text: 'Large Button',
+        size: 'large',
     },
 };
 
-export const VariantButtons: Story = {
+export const PrimaryButton: Story = {
+    args: {
+        text: 'Primary Button',
+        variant: 'primary',
+    },
+};
+
+export const SecondaryButton: Story = {
+    args: {
+        text: 'Secondary Button',
+        variant: 'secondary',
+    },
+};
+
+export const SuccessButton: Story = {
+    args: {
+        text: 'Success Button',
+        variant: 'success',
+    },
+};
+
+export const DangerButton: Story = {
     args: {
         text: 'Danger Button',
         variant: 'danger',
+    },
+};
+
+export const WarningButton: Story = {
+    args: {
+        text: 'Warning Button',
+        variant: 'warning',
+    },
+};
+
+export const InfoButton: Story = {
+    args: {
+        text: 'Info Button',
+        variant: 'info',
     },
 };
 
@@ -299,7 +457,7 @@ export const OutlineButton: Story = {
 
 export const PlainButton: Story = {
     args: {
-        text: 'Plain Button',
+        text: 'Plain Text Button',
         plain: true,
     },
 };
@@ -311,9 +469,16 @@ export const IconButton: Story = {
     },
 };
 
-export const ButtonWithShadow: Story = {
+export const ButtonWithSMShadow: Story = {
     args: {
-        text: 'Button with Large Shadow',
+        text: 'Button Small Shadow',
+        shadow: 'sm',
+    },
+};
+
+export const ButtonWithLGShadow: Story = {
+    args: {
+        text: 'Button Large Shadow',
         shadow: 'lg',
     },
 };
@@ -341,28 +506,62 @@ export const LoadingButton: Story = {
 };
 
 // Button with additional features
-export const ButtonAsLink: Story = {
+export const ButtonWithAlert: Story = {
+    args: {
+        text: 'Click for Alert',
+        onClick: () => alert('Button clicked!'),
+    },
+};
+
+export const AnimatedButton: Story = {
+    args: {
+        text: 'Animated Button',
+        animation: 'flash',
+    },
+};
+
+export const OnClickAnimation: Story = {
+    args: {
+        text: 'Click Me!',
+        animateOnClick: 'flash',
+    },
+};
+
+export const ButtonWithLink: Story = {
     args: {
         text: 'Button as Link',
         href: 'https://bankkroll.xyz',
     },
 };
 
-export const CoolModeWithRandomCircles: Story = {
+export const DrippyMode: Story = {
+    args: {
+        text: 'Button with Drippy Mode',
+        drippyMode: true,
+    },
+};
+
+export const ExplodedMode: Story = {
+    args: {
+        text: 'Button with Exploded Mode',
+        explodedMode: true,
+    },
+};
+export const CoolMode: Story = {
     args: {
         text: 'Button with Cool Mode',
         coolmode: true,
     },
 };
 
-export const WithImageUrl: Story = {
+export const CoolModeWithImage: Story = {
     args: {
         text: 'Button with Custom Cool Mode',
         coolmode: './custom.png',
     },
 };
 
-export const WithParticleCustomizations: Story = {
+export const CoolModeCustomizations: Story = {
     args: {
         text: 'Button with Particle Customizations',
         coolmode: true,
@@ -372,13 +571,5 @@ export const WithParticleCustomizations: Story = {
         speedUp: 40,
         spinSpeed: 40,
         spinVal: 45,
-    },
-};
-
-// Animated button configurations
-export const AnimatedButton: Story = {
-    args: {
-        text: 'Animated Button',
-        animation: 'flash',
     },
 };

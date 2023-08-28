@@ -38,7 +38,7 @@ export const useParticleEffect = (
 };
 
 const getContainer = () => {
-    const id = '_rk_site_coolMode';
+    const id = '_rk_coolMode';
     const existingContainer = document.getElementById(id);
 
     if (existingContainer) {

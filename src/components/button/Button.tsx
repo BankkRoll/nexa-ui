@@ -1,8 +1,11 @@
 // src/components/button/Button.tsx
-import React from 'react';
+import React, { useState } from 'react';
 import { useParticleEffect } from '../../utils/coolmode';
+import { useDrippyEffect } from '../../utils/drippyEffect';
+import { useExplodedEffect } from '../../utils/explodedEffect';
 import AnimateWrapper, { AnimationName } from '../../utils/animatewrapper';
 import './Button.css';
+import 'font-awesome/css/font-awesome.min.css';
 
 /**
  * Options for controlling the appearance and behavior of particles.
@@ -22,6 +25,8 @@ interface ParticleOptions {
 interface ButtonProps extends ParticleOptions {
     text?: string;
     coolmode?: boolean | string;
+    explodedMode?: boolean;
+    drippyMode?: boolean;
     className?: string;
     size?: 'small' | 'medium' | 'large';
     href?: string;
@@ -41,6 +46,8 @@ interface ButtonProps extends ParticleOptions {
     shadow?: 'none' | 'sm' | 'md' | 'lg';
     tooltip?: string;
     animation?: AnimationName;
+    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+    animateOnClick?: AnimationName;
 }
 
 /**
@@ -51,6 +58,8 @@ interface ButtonProps extends ParticleOptions {
 const Button: React.FC<ButtonProps> = ({
     text,
     coolmode,
+    explodedMode = false,
+    drippyMode = false,
     className,
     size = 'medium',
     href,
@@ -64,8 +73,28 @@ const Button: React.FC<ButtonProps> = ({
     shadow,
     tooltip,
     animation,
+    onClick,
+    animateOnClick,
     ...particleOptions
 }) => {
+    const [currentAnimation, setCurrentAnimation] =
+        useState<AnimationName | null>(animation || null);
+
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        if (onClick) {
+            onClick(event);
+        }
+
+        // If animateOnClick prop is provided, set the currentAnimation state
+        if (animateOnClick) {
+            setCurrentAnimation(animateOnClick);
+
+            // Reset the animation state after a short delay (equal to animation duration)
+            setTimeout(() => setCurrentAnimation(animation || null), 1000); // Assuming 1 second for animation duration
+        }
+    };
+    const drippyRef = useDrippyEffect(drippyMode);
+    const explodedRef = useExplodedEffect(explodedMode);
     const coolRef = useParticleEffect(
         typeof coolmode === 'string'
             ? coolmode
@@ -74,6 +103,11 @@ const Button: React.FC<ButtonProps> = ({
             : undefined,
         particleOptions,
     );
+    const finalRef = drippyMode
+        ? drippyRef
+        : explodedMode
+        ? explodedRef
+        : coolRef;
 
     const combinedClassName = `button-default ${size} rounded-${rounded} ${variant} ${
         outline ? 'outline' : ''
@@ -103,7 +137,7 @@ const Button: React.FC<ButtonProps> = ({
                 <a
                     ref={(node: HTMLButtonElement | HTMLAnchorElement | null) =>
                         ((
-                            coolRef as React.MutableRefObject<
+                            finalRef as React.MutableRefObject<
                                 HTMLButtonElement | HTMLAnchorElement | null
                             >
                         ).current = node)
@@ -121,14 +155,15 @@ const Button: React.FC<ButtonProps> = ({
             <button
                 ref={(node: HTMLButtonElement | HTMLAnchorElement | null) =>
                     ((
-                        coolRef as React.MutableRefObject<
+                        finalRef as React.MutableRefObject<
                             HTMLButtonElement | HTMLAnchorElement | null
                         >
                     ).current = node)
                 }
                 className={combinedClassName}
-                disabled={disabled}
+                disabled={disabled || loading}
                 title={tooltip}
+                onClick={handleClick}
             >
                 {content}
             </button>
@@ -136,8 +171,10 @@ const Button: React.FC<ButtonProps> = ({
     };
 
     // Use the AnimateWrapper if an animation prop is provided
-    return animation ? (
-        <AnimateWrapper animation={animation}>{renderButton()}</AnimateWrapper>
+    return currentAnimation ? (
+        <AnimateWrapper animation={currentAnimation}>
+            {renderButton()}
+        </AnimateWrapper>
     ) : (
         renderButton()
     );
