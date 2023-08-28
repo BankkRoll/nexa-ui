@@ -19,18 +19,12 @@ const meta: Meta = {
             },
             defaultValue: 'Button',
         },
-        imageUrl: {
+        coolmode: {
             control: {
                 type: 'text',
             },
             description:
-                'URL for the image to be used in cool mode or "coolmode" for random circles',
-        },
-        disabledCoolMode: {
-            control: {
-                type: 'boolean',
-            },
-            description: 'Disables the cool mode for the button if set to true',
+                'Either "coolmode" for random circles or provide a URL for a custom image for the cool mode',
         },
         direction: {
             control: {
@@ -357,21 +351,21 @@ export const ButtonAsLink: Story = {
 export const CoolModeWithRandomCircles: Story = {
     args: {
         text: 'Button with Cool Mode',
-        imageUrl: 'coolmode',
+        coolmode: true,
     },
 };
 
 export const WithImageUrl: Story = {
     args: {
         text: 'Button with Custom Cool Mode',
-        imageUrl: './custom.png',
+        coolmode: './custom.png',
     },
 };
 
 export const WithParticleCustomizations: Story = {
     args: {
         text: 'Button with Particle Customizations',
-        imageUrl: 'coolmode',
+        coolmode: true,
         direction: 4,
         particleSize: 100,
         speedHorz: 5,

@@ -17,8 +17,7 @@ interface ParticleOptions {
  */
 interface ButtonProps extends ParticleOptions {
     text?: string;
-    imageUrl?: string;
-    disabledCoolMode?: boolean;
+    coolmode?: boolean | string;
     className?: string;
     size?: 'small' | 'medium' | 'large';
     href?: string;

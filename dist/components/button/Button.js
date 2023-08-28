@@ -20,8 +20,12 @@ import './Button.css';
  * @param props The properties for the Button component.
  */
 var Button = function (_a) {
-    var text = _a.text, imageUrl = _a.imageUrl, disabledCoolMode = _a.disabledCoolMode, className = _a.className, _b = _a.size, size = _b === void 0 ? 'medium' : _b, href = _a.href, disabled = _a.disabled, loading = _a.loading, rounded = _a.rounded, _c = _a.variant, variant = _c === void 0 ? 'primary' : _c, _d = _a.outline, outline = _d === void 0 ? false : _d, _e = _a.plain, plain = _e === void 0 ? false : _e, icon = _a.icon, shadow = _a.shadow, tooltip = _a.tooltip, animation = _a.animation, particleOptions = __rest(_a, ["text", "imageUrl", "disabledCoolMode", "className", "size", "href", "disabled", "loading", "rounded", "variant", "outline", "plain", "icon", "shadow", "tooltip", "animation"]);
-    var coolRef = useParticleEffect(imageUrl, disabledCoolMode, particleOptions);
+    var text = _a.text, coolmode = _a.coolmode, className = _a.className, _b = _a.size, size = _b === void 0 ? 'medium' : _b, href = _a.href, disabled = _a.disabled, loading = _a.loading, rounded = _a.rounded, _c = _a.variant, variant = _c === void 0 ? 'primary' : _c, _d = _a.outline, outline = _d === void 0 ? false : _d, _e = _a.plain, plain = _e === void 0 ? false : _e, icon = _a.icon, shadow = _a.shadow, tooltip = _a.tooltip, animation = _a.animation, particleOptions = __rest(_a, ["text", "coolmode", "className", "size", "href", "disabled", "loading", "rounded", "variant", "outline", "plain", "icon", "shadow", "tooltip", "animation"]);
+    var coolRef = useParticleEffect(typeof coolmode === 'string'
+        ? coolmode
+        : coolmode
+            ? 'coolmode'
+            : undefined, particleOptions);
     var combinedClassName = "button-default ".concat(size, " rounded-").concat(rounded, " ").concat(variant, " ").concat(outline ? 'outline' : '', " ").concat(plain ? 'plain' : '', " shadow-").concat(shadow, " ").concat(loading ? 'loading' : '', " ").concat(disabled ? 'disabled' : '', " ").concat(className || '');
     var content = loading ? (React.createElement("div", { className: "loading-container" },
         icon && React.createElement("i", { className: "icon ".concat(icon) }),

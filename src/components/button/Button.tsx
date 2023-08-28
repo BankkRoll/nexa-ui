@@ -21,8 +21,7 @@ interface ParticleOptions {
  */
 interface ButtonProps extends ParticleOptions {
     text?: string;
-    imageUrl?: string;
-    disabledCoolMode?: boolean;
+    coolmode?: boolean | string;
     className?: string;
     size?: 'small' | 'medium' | 'large';
     href?: string;
@@ -51,8 +50,7 @@ interface ButtonProps extends ParticleOptions {
  */
 const Button: React.FC<ButtonProps> = ({
     text,
-    imageUrl,
-    disabledCoolMode,
+    coolmode,
     className,
     size = 'medium',
     href,
@@ -69,8 +67,11 @@ const Button: React.FC<ButtonProps> = ({
     ...particleOptions
 }) => {
     const coolRef = useParticleEffect(
-        imageUrl,
-        disabledCoolMode,
+        typeof coolmode === 'string'
+            ? coolmode
+            : coolmode
+            ? 'coolmode'
+            : undefined,
         particleOptions,
     );
 

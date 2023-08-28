@@ -1,14 +1,13 @@
 // src/utils/coolmode.ts
 // Credits: Adapted from https://github.com/rainbow-me/rainbowkit/blob/main/site/lib/useParticleEffect.t
 import { useEffect, useRef } from 'react';
-export var useParticleEffect = function (imageUrl, disabled, particleOptions) {
-    if (disabled === void 0) { disabled = false; }
+export var useParticleEffect = function (coolmode, particleOptions) {
     var ref = useRef(null);
     useEffect(function () {
-        if (ref.current && imageUrl !== undefined) {
-            return applyParticleEffect(ref.current, imageUrl, disabled, particleOptions);
+        if (ref.current && coolmode) {
+            return applyParticleEffect(ref.current, coolmode, particleOptions);
         }
-    }, [imageUrl, disabled, particleOptions]);
+    }, [coolmode, particleOptions]);
     return ref;
 };
 var getContainer = function () {
@@ -34,7 +33,7 @@ var getContainer = function () {
     return container;
 };
 var instanceCounter = 0;
-function applyParticleEffect(element, imageUrl, disabled, options) {
+function applyParticleEffect(element, imageUrl, options) {
     instanceCounter++;
     var sizes = [15, 20, 25, 35, 45];
     var limit = 45;
@@ -136,8 +135,6 @@ function applyParticleEffect(element, imageUrl, disabled, options) {
         }
     };
     var tapHandler = function (e) {
-        if (disabled)
-            return;
         updateMousePosition(e);
         autoAddParticle = true;
     };

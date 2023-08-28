@@ -24,23 +24,16 @@ interface ParticleOptions {
 }
 
 export const useParticleEffect = (
-    imageUrl?: string,
-    disabled: boolean = false,
+    coolmode?: string,
     particleOptions?: ParticleOptions,
 ) => {
     const ref: RefObject<HTMLButtonElement | HTMLAnchorElement> = useRef(null);
 
     useEffect(() => {
-        if (ref.current && imageUrl !== undefined) {
-            return applyParticleEffect(
-                ref.current,
-                imageUrl,
-                disabled,
-                particleOptions,
-            );
+        if (ref.current && coolmode) {
+            return applyParticleEffect(ref.current, coolmode, particleOptions);
         }
-    }, [imageUrl, disabled, particleOptions]);
-
+    }, [coolmode, particleOptions]);
     return ref;
 };
 
@@ -79,7 +72,6 @@ let instanceCounter = 0;
 function applyParticleEffect(
     element: HTMLElement,
     imageUrl: string,
-    disabled: boolean,
     options?: ParticleOptions,
 ): () => void {
     instanceCounter++;
@@ -215,8 +207,6 @@ function applyParticleEffect(
     };
 
     const tapHandler = (e: MouseEvent | TouchEvent) => {
-        if (disabled) return;
-
         updateMousePosition(e);
         autoAddParticle = true;
     };
