@@ -11,20 +11,19 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 // src/components/button/Button.tsx
 import React, { useState } from 'react';
-import { useParticleEffect } from '../../utils/coolmode';
-import { useDrippyEffect } from '../../utils/drippyEffect';
-import { useExplodedEffect } from '../../utils/explodedEffect';
+import { useParticleEffect } from '../../utils/coolEffect/coolmode';
+import { useDrippyEffect } from '../../utils/drippyEffect/drippyMode';
+import { useExplodedEffect } from '../../utils/explodedEffect/explodedMode';
+import { useRainingEffect } from '../../utils/rainingEffect/rainingMode';
 import AnimateWrapper from '../../utils/animatewrapper';
 import './Button.css';
 import 'font-awesome/css/font-awesome.min.css';
 /**
  * A advanced button component that supports animation, cool mode, exploded mode, drippy mode and much more.
- *
- * @param props The properties for the Button component.
  */
 var Button = function (_a) {
-    var text = _a.text, coolMode = _a.coolMode, _b = _a.explodedMode, explodedMode = _b === void 0 ? false : _b, _c = _a.drippyMode, drippyMode = _c === void 0 ? false : _c, className = _a.className, _d = _a.size, size = _d === void 0 ? 'medium' : _d, href = _a.href, disabled = _a.disabled, loading = _a.loading, rounded = _a.rounded, _e = _a.variant, variant = _e === void 0 ? 'primary' : _e, _f = _a.outline, outline = _f === void 0 ? false : _f, _g = _a.plain, plain = _g === void 0 ? false : _g, icon = _a.icon, shadow = _a.shadow, tooltip = _a.tooltip, animation = _a.animation, onClick = _a.onClick, animateOnClick = _a.animateOnClick, particleOptions = __rest(_a, ["text", "coolMode", "explodedMode", "drippyMode", "className", "size", "href", "disabled", "loading", "rounded", "variant", "outline", "plain", "icon", "shadow", "tooltip", "animation", "onClick", "animateOnClick"]);
-    var _h = useState(animation || null), currentAnimation = _h[0], setCurrentAnimation = _h[1];
+    var text = _a.text, coolMode = _a.coolMode, explodedMode = _a.explodedMode, drippyMode = _a.drippyMode, rainingMode = _a.rainingMode, className = _a.className, _b = _a.size, size = _b === void 0 ? 'medium' : _b, href = _a.href, disabled = _a.disabled, loading = _a.loading, rounded = _a.rounded, _c = _a.variant, variant = _c === void 0 ? 'primary' : _c, _d = _a.outline, outline = _d === void 0 ? false : _d, _e = _a.plain, plain = _e === void 0 ? false : _e, icon = _a.icon, shadow = _a.shadow, tooltip = _a.tooltip, animation = _a.animation, onClick = _a.onClick, animateOnClick = _a.animateOnClick, rainingParticleCount = _a.rainingParticleCount, rainingSpeed = _a.rainingSpeed, rainingSize = _a.rainingSize, rainingCustomImage = _a.rainingCustomImage, particleOptions = __rest(_a, ["text", "coolMode", "explodedMode", "drippyMode", "rainingMode", "className", "size", "href", "disabled", "loading", "rounded", "variant", "outline", "plain", "icon", "shadow", "tooltip", "animation", "onClick", "animateOnClick", "rainingParticleCount", "rainingSpeed", "rainingSize", "rainingCustomImage"]);
+    var _f = useState(animation || null), currentAnimation = _f[0], setCurrentAnimation = _f[1];
     var handleClick = function (event) {
         if (onClick) {
             onClick(event);
@@ -36,18 +35,29 @@ var Button = function (_a) {
             setTimeout(function () { return setCurrentAnimation(animation || null); }, 1000); // Assuming 1 second for animation duration
         }
     };
-    var drippyRef = useDrippyEffect(drippyMode);
-    var explodedRef = useExplodedEffect(explodedMode);
+    var drippyRef = useDrippyEffect(drippyMode !== null && drippyMode !== void 0 ? drippyMode : false);
+    var explodedRef = useExplodedEffect(explodedMode !== null && explodedMode !== void 0 ? explodedMode : false);
     var coolRef = useParticleEffect(typeof coolMode === 'string'
         ? coolMode
         : coolMode
             ? 'coolMode'
             : undefined, particleOptions);
+    var rainingOptions = rainingMode
+        ? {
+            rainingParticleCount: rainingParticleCount,
+            rainingSpeed: rainingSpeed,
+            rainingSize: rainingSize,
+            rainingCustomImage: rainingCustomImage,
+        }
+        : undefined;
+    var rainingRef = useRainingEffect(rainingOptions);
     var finalRef = drippyMode
         ? drippyRef
         : explodedMode
             ? explodedRef
-            : coolRef;
+            : coolMode
+                ? coolRef
+                : rainingRef;
     var combinedClassName = "button-default ".concat(size, " rounded-").concat(rounded, " ").concat(variant, " ").concat(outline ? 'outline' : '', " ").concat(plain ? 'plain' : '', " shadow-").concat(shadow, " ").concat(loading ? 'loading' : '', " ").concat(disabled ? 'disabled' : '', " ").concat(className || '');
     var content = loading ? (React.createElement("div", { className: "loading-container" },
         icon && React.createElement("i", { className: "icon ".concat(icon) }),

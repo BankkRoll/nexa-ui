@@ -14,13 +14,23 @@ interface ParticleOptions {
     spinVal?: number;
 }
 /**
+ * Props for the Particle component.
+ */
+interface RainingOptions {
+    rainingParticleCount?: number;
+    rainingSpeed?: number;
+    rainingSize?: number;
+    rainingCustomImage?: string;
+}
+/**
  * Props for the Button component.
  */
-interface ButtonProps extends ParticleOptions {
+interface ButtonProps extends ParticleOptions, RainingOptions {
     text?: string;
-    coolMode?: boolean | string;
-    explodedMode?: boolean;
-    drippyMode?: boolean;
+    coolMode?: true;
+    explodedMode?: true;
+    drippyMode?: true;
+    rainingMode?: true | RainingOptions;
     className?: string;
     size?: 'small' | 'medium' | 'large';
     href?: string;
@@ -39,8 +49,6 @@ interface ButtonProps extends ParticleOptions {
 }
 /**
  * A advanced button component that supports animation, cool mode, exploded mode, drippy mode and much more.
- *
- * @param props The properties for the Button component.
  */
 declare const Button: React.FC<ButtonProps>;
 export default Button;
