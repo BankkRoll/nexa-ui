@@ -5,7 +5,7 @@ export var useRainingEffect = function (options) {
     var particles = useRef([]).current;
     var particleCount = (options === null || options === void 0 ? void 0 : options.rainingParticleCount) || 30;
     var speed = (options === null || options === void 0 ? void 0 : options.rainingSpeed) || 5;
-    var size = (options === null || options === void 0 ? void 0 : options.rainingSize) || 25;
+    var size = (options === null || options === void 0 ? void 0 : options.rainingSize) || 50;
     var customImage = options === null || options === void 0 ? void 0 : options.rainingCustomImage;
     var cleanupParticles = function () {
         particles.forEach(function (p) { return p.element.remove(); });

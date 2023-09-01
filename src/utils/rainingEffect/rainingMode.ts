@@ -22,7 +22,7 @@ export const useRainingEffect = (options?: RainingOptions) => {
 
     const particleCount = options?.rainingParticleCount || 30;
     const speed = options?.rainingSpeed || 5;
-    const size = options?.rainingSize || 25;
+    const size = options?.rainingSize || 50;
     const customImage = options?.rainingCustomImage;
 
     const cleanupParticles = () => {

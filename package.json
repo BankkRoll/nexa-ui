@@ -1,6 +1,6 @@
 {
     "name": "nexa-ui",
-    "version": "1.0.15",
+    "version": "1.0.16",
     "description": "NexaUI is a easily customizable component library for React.",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -23,6 +23,11 @@
         "url": "https://github.com/BankkRoll/nexaui/issues"
     },
     "homepage": "https://www.npmjs.com/package/nexaui",
+    "links": {
+        "GitHub": "https://github.com/BankkRoll/nexa-ui",
+        "npm": "https://www.npmjs.com/package/nexa-ui",
+        "Storybook": "https://nexa-ui.vercel.app/"
+    },
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^6.4.2",
         "@fortawesome/free-regular-svg-icons": "^6.4.2",
