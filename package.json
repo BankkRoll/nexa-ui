@@ -1,6 +1,6 @@
 {
     "name": "nexa-ui",
-    "version": "1.0.13",
+    "version": "1.0.15",
     "description": "NexaUI is a easily customizable component library for React.",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -31,6 +31,7 @@
         "animate.css": "^4.1.1",
         "autoprefixer": "^10.4.15",
         "font-awesome": "^4.7.0",
+        "nexa-ui": "^1.0.14",
         "postcss": "^8.4.28",
         "react": "^18.2.0"
     },

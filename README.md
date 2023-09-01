@@ -2,15 +2,73 @@
 
 ![nexa-ui](https://github.com/BankkRoll/nexa-ui/assets/106103625/f45326f5-f355-4e7d-a1e9-6ca927d9232f)
 
-Welcome to nexa-ui - A Modern Components Library for React.
+Welcome to nexa-ui, a cutting-edge component library for React designed for both developers and designers.
 
-## Features
+## 🌟 Features
 
--   **Styling Flexibility**: Whether you're using Tailwind CSS, a custom stylesheet, or any other popular CSS framework, nexa-ui components will adapt effortlessly.
--   **Integrated Animations**: Fully integrated version of animate.css, ensuring smooth, high-quality animations for every component.
--   **Icon Support**: Fully integrated Font Awesome icons, nexa-ui allows you to add icons seamlessly to your components, enhancing the visual appeal and functionality.
--   **Custom Interactions**: Custom advanced interactions to make your UI stand out and offer a unique experience for your users.
--   **Fully Customizable**: Every component is a canvas. Customize to your heart's content, ensuring your UI is truly unique and resonates with your brand.
--   **Regular Updates**: nexa-ui is actively maintained. Stay tuned for more components, features, and improvements!
+-   **Styling Flexibility**: Designed to adapt seamlessly with popular CSS frameworks like Tailwind, Bootstrap, and your custom styles.
+-   **Integrated Animations**: Enjoy smooth, high-quality animations courtesy of animate.css.
+-   **Icon Support**: Leverage Font Awesome icons to enhance your UI components.
+-   **Custom Interactions**: Add interactive flair to your UI with our advanced custom features.
+-   **Fully Customizable**: Tailor each component to align perfectly with your brand.
+-   **Regular Updates**: An actively maintained library, stay tuned for regular feature updates and improvements.
 
-Stay tuned for more updates!
+## 📦 Installation
+
+To install nexa-ui, run the following command:
+
+```bash
+npm install nexa-ui
+```
+
+## 🛠 Usage Flexibility
+
+`nexa-ui` is meticulously crafted to offer utmost flexibility. Here are ways you can use our library:
+
+### Pre-built Components
+
+Simply import our Button, Card, and other components to get started instantly.
+
+```jsx
+import { Button, Card } from 'nexa-ui';
+```
+
+### Utility Hooks
+
+Want to add some nexa-ui magic to your custom or third-party components? You can directly use our utility hooks like `useCoolMode`, `useDrippyMode`, etc.
+
+```jsx
+import {
+    useCoolMode,
+    useRainingMode,
+    useExplodedMode,
+    useDrippyMode,
+} from 'nexa-ui';
+```
+
+#### Example: Adding Cool Mode to a Custom Button
+
+```jsx
+import React from 'react';
+import { useCoolMode } from 'nexa-ui';
+
+const MyCustomButton = () => {
+    const coolMode = useCoolMode();
+
+    return (
+        <button {...coolMode} className="my-custom-button">
+            My Cool Button
+        </button>
+    );
+};
+```
+
+## 🔗 Additional Resources
+
+-   [npm package](https://www.npmjs.com/package/nexa-ui)
+-   [Storybook Demo](https://nexa-ui.vercel.app/)
+-   [GitHub Repository](https://github.com/BankkRoll/nexa-ui)
+
+## 🔜 Stay Tuned for More Updates!
+
+We are constantly working to improve `nexa-ui` and add new features. Keep an eye on this space for future updates.

@@ -1,8 +1,9 @@
 // src/components/button/Button.tsx
 import React, { useState } from 'react';
-import { useParticleEffect } from '../../utils/coolmode';
-import { useDrippyEffect } from '../../utils/drippyEffect';
-import { useExplodedEffect } from '../../utils/explodedEffect';
+import { useParticleEffect } from '../../utils/coolEffect/coolmode';
+import { useDrippyEffect } from '../../utils/drippyEffect/drippyMode';
+import { useExplodedEffect } from '../../utils/explodedEffect/explodedMode';
+import { useRainingEffect } from '../../utils/rainingEffect/rainingMode';
 import AnimateWrapper, { AnimationName } from '../../utils/animatewrapper';
 import './Button.css';
 import 'font-awesome/css/font-awesome.min.css';
@@ -20,13 +21,24 @@ interface ParticleOptions {
 }
 
 /**
+ * Props for the Particle component.
+ */
+interface RainingOptions {
+    rainingParticleCount?: number;
+    rainingSpeed?: number;
+    rainingSize?: number;
+    rainingCustomImage?: string;
+}
+
+/**
  * Props for the Button component.
  */
-interface ButtonProps extends ParticleOptions {
+interface ButtonProps extends ParticleOptions, RainingOptions {
     text?: string;
-    coolMode?: boolean | string;
-    explodedMode?: boolean;
-    drippyMode?: boolean;
+    coolMode?: true;
+    explodedMode?: true;
+    drippyMode?: true;
+    rainingMode?: true | RainingOptions;
     className?: string;
     size?: 'small' | 'medium' | 'large';
     href?: string;
@@ -52,14 +64,13 @@ interface ButtonProps extends ParticleOptions {
 
 /**
  * A advanced button component that supports animation, cool mode, exploded mode, drippy mode and much more.
- *
- * @param props The properties for the Button component.
  */
 const Button: React.FC<ButtonProps> = ({
     text,
     coolMode,
-    explodedMode = false,
-    drippyMode = false,
+    explodedMode,
+    drippyMode,
+    rainingMode,
     className,
     size = 'medium',
     href,
@@ -75,6 +86,10 @@ const Button: React.FC<ButtonProps> = ({
     animation,
     onClick,
     animateOnClick,
+    rainingParticleCount,
+    rainingSpeed,
+    rainingSize,
+    rainingCustomImage,
     ...particleOptions
 }) => {
     const [currentAnimation, setCurrentAnimation] =
@@ -93,8 +108,8 @@ const Button: React.FC<ButtonProps> = ({
             setTimeout(() => setCurrentAnimation(animation || null), 1000); // Assuming 1 second for animation duration
         }
     };
-    const drippyRef = useDrippyEffect(drippyMode);
-    const explodedRef = useExplodedEffect(explodedMode);
+    const drippyRef = useDrippyEffect(drippyMode ?? false);
+    const explodedRef = useExplodedEffect(explodedMode ?? false);
     const coolRef = useParticleEffect(
         typeof coolMode === 'string'
             ? coolMode
@@ -103,11 +118,24 @@ const Button: React.FC<ButtonProps> = ({
             : undefined,
         particleOptions,
     );
+    const rainingOptions: RainingOptions | undefined = rainingMode
+        ? {
+              rainingParticleCount,
+              rainingSpeed,
+              rainingSize,
+              rainingCustomImage,
+          }
+        : undefined;
+
+    const rainingRef = useRainingEffect(rainingOptions);
+
     const finalRef = drippyMode
         ? drippyRef
         : explodedMode
         ? explodedRef
-        : coolRef;
+        : coolMode
+        ? coolRef
+        : rainingRef;
 
     const combinedClassName = `button-default ${size} rounded-${rounded} ${variant} ${
         outline ? 'outline' : ''

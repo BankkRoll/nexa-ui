@@ -1,159 +1,50 @@
-// src/components/button/Button.stories.ts
+// src/components/card/Card.stories.ts
 import type { Meta, StoryObj } from '@storybook/react';
-import 'font-awesome/css/font-awesome.min.css';
 
-import { Button } from '../../index';
+import { Card } from '../../index';
 
-// Define the storybook settings for the Button component
 const meta: Meta = {
-    title: 'Components/Button',
-    component: Button,
+    title: 'Components/Card',
+    component: Card,
     parameters: {
         layout: 'centered',
     },
     tags: ['autodocs'],
     argTypes: {
-        text: {
-            control: {
-                type: 'text',
-            },
-            defaultValue: 'Button',
+        title: {
+            control: { type: 'text' },
+            defaultValue: 'Card Title',
         },
-        coolMode: {
-            control: {
-                type: 'text',
-            },
-            description:
-                'Use "coolMode" for random color circles, or directly a URL for custom image as coolMode={url}, or even as coolMode={coolMode}.',
+        content: {
+            control: { type: 'text' },
+            defaultValue: 'This is the card content.',
         },
-        rainingMode: {
-            control: {
-                type: 'object',
-            },
-            description:
-                'Use "rainingMode" for raining particles effect. You can pass an object for customization.',
+        image: {
+            control: { type: 'text' },
+            defaultValue: 'https://via.placeholder.com/150',
         },
-        explodedMode: {
-            control: {
-                type: 'boolean',
-            },
-            description: 'Use "ExplodedMode" for exploding particles effect.',
-        },
-        drippyMode: {
-            control: {
-                type: 'boolean',
-            },
-            description: 'Use "DrippyMode" for drippy particles effect.',
-        },
-        direction: {
-            control: {
-                type: 'number',
-            },
-            description: 'Direction for the particle animation in cool mode',
-        },
-        particleSize: {
-            control: {
-                type: 'number',
-            },
-            description: 'Size of the particle in cool mode',
-        },
-        speedHorz: {
-            control: {
-                type: 'number',
-            },
-            description: 'Horizontal speed of the particle in cool mode',
-        },
-        speedUp: {
-            control: {
-                type: 'number',
-            },
-            description: 'Upward speed of the particle in cool mode',
-        },
-        spinSpeed: {
-            control: {
-                type: 'number',
-            },
-            description: 'Spin speed of the particle in cool mode',
-        },
-        spinVal: {
-            control: {
-                type: 'number',
-            },
-            description: 'Spin value of the particle in cool mode',
-        },
-        className: {
-            control: {
-                type: 'text',
-            },
-            description: 'Custom CSS class for additional styling',
-        },
-        size: {
+        imagePosition: {
             control: {
                 type: 'select',
-                options: ['small', 'medium', 'large'],
+                options: ['top', 'middle', 'bottom'],
             },
-            defaultValue: 'medium',
-            description: 'Size of the button',
+            defaultValue: 'top',
         },
-        href: {
-            control: {
-                type: 'text',
-            },
-            description: 'Link URL if the button acts as a link',
+        footerContent: {
+            control: { type: 'text' },
         },
-        disabled: {
+        variant: {
             control: {
-                type: 'boolean',
+                type: 'select',
+                options: ['primary', 'secondary', 'info', 'warning', 'danger'],
             },
-            description: 'Disables the button if set to true',
-        },
-        loading: {
-            control: {
-                type: 'boolean',
-            },
-            description:
-                'Displays the button in a loading state if set to true',
+            defaultValue: 'primary',
         },
         rounded: {
             control: {
                 type: 'select',
                 options: ['xs', 'sm', 'md', 'lg', 'xl', 'xxl', 'circle'],
             },
-            description: 'Rounded corners of the button',
-        },
-        variant: {
-            control: {
-                type: 'select',
-                options: [
-                    'primary',
-                    'secondary',
-                    'success',
-                    'danger',
-                    'warning',
-                    'info',
-                ],
-            },
-            defaultValue: 'primary',
-            description: 'Color variant of the button',
-        },
-        outline: {
-            control: {
-                type: 'boolean',
-            },
-            description: 'Outline style of the button',
-        },
-        plain: {
-            control: {
-                type: 'boolean',
-            },
-            description:
-                'Displays the button as plain text without background or outline',
-        },
-        icon: {
-            control: {
-                type: 'text',
-            },
-            description: 'Icon for the button',
         },
         shadow: {
             control: {
@@ -161,17 +52,6 @@ const meta: Meta = {
                 options: ['none', 'sm', 'md', 'lg'],
             },
             defaultValue: 'sm',
-            description: 'Shadow depth of the button',
-        },
-        tooltip: {
-            control: {
-                type: 'text',
-            },
-            description: 'Tooltip to show on button hover',
-        },
-        onClick: {
-            action: 'clicked',
-            description: 'Event triggered when the button is clicked',
         },
         animation: {
             control: {
@@ -390,218 +270,84 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-// Base button configurations
+// Base card configurations
 export const Default: Story = {
     args: {
-        text: 'Default Button',
+        title: 'Default Card',
+        content: 'This is the default card content.',
     },
 };
 
-export const RoundedSM: Story = {
+export const CardWithImage: Story = {
     args: {
-        text: 'Rounded Button',
-        rounded: 'sm',
+        title: 'Card With Image',
+        content: 'This is the card content.',
+        footerContent: 'This is the card footer content.',
+        image: 'https://via.placeholder.com/150',
+        imagePosition: 'top',
     },
 };
 
-export const RoundedLG: Story = {
+export const PrimaryCard: Story = {
     args: {
-        text: 'Rounded Button',
-        rounded: 'lg',
+        title: 'Primary Card',
+        variant: 'primary',
     },
 };
 
-export const SmallButton: Story = {
+export const InfoCard: Story = {
     args: {
-        text: 'Small Button',
-        size: 'small',
-    },
-};
-
-export const LargeButton: Story = {
-    args: {
-        text: 'Large Button',
-        size: 'large',
-    },
-};
-
-export const SecondaryButton: Story = {
-    args: {
-        text: 'Secondary Button',
-        variant: 'secondary',
-    },
-};
-
-export const SuccessButton: Story = {
-    args: {
-        text: 'Success Button',
-        variant: 'success',
-    },
-};
-
-export const DangerButton: Story = {
-    args: {
-        text: 'Danger Button',
-        variant: 'danger',
-    },
-};
-
-export const WarningButton: Story = {
-    args: {
-        text: 'Warning Button',
-        variant: 'warning',
-    },
-};
-
-export const InfoButton: Story = {
-    args: {
-        text: 'Info Button',
+        title: 'Info Card',
         variant: 'info',
     },
 };
 
-export const OutlineButton: Story = {
+export const WarningCard: Story = {
     args: {
-        text: 'Outline Button',
-        outline: true,
+        title: 'Warning Card',
+        variant: 'warning',
     },
 };
 
-export const PlainButton: Story = {
+export const DangerCard: Story = {
     args: {
-        text: 'Plain Text Button',
-        plain: true,
+        title: 'Danger Card',
+        variant: 'danger',
     },
 };
 
-export const IconButton: Story = {
+export const SuccessCard: Story = {
     args: {
-        text: 'Button with Icon',
-        icon: 'fa fa-rocket',
+        title: 'Success Card',
+        variant: 'success',
     },
 };
 
-export const ButtonWithSMShadow: Story = {
+export const RoundedCard: Story = {
     args: {
-        text: 'Button Small Shadow',
-        shadow: 'sm',
+        title: 'Rounded Card',
+        rounded: 'md',
     },
 };
 
-export const ButtonWithLGShadow: Story = {
+export const ShadowCard: Story = {
     args: {
-        text: 'Button Large Shadow',
-        shadow: 'lg',
-    },
-};
-
-export const ButtonWithTooltip: Story = {
-    args: {
-        text: 'Button with Tooltip',
-        tooltip: 'This is a tooltip!',
-    },
-};
-
-// Button states
-export const DisabledButton: Story = {
-    args: {
-        text: 'Disabled Button',
-        disabled: true,
-    },
-};
-
-export const LoadingButton: Story = {
-    args: {
-        text: 'Button',
-        loading: true,
-    },
-};
-
-// Button with additional features
-export const ButtonWithAlert: Story = {
-    args: {
-        text: 'Click for Alert',
-        onClick: () => alert('Button clicked!'),
-    },
-};
-
-export const AnimatedButton: Story = {
-    args: {
-        text: 'Animated Button',
-        animation: 'flash',
+        title: 'Shadow Card',
+        shadow: 'md',
     },
 };
 
 export const OnClickAnimation: Story = {
     args: {
-        text: 'Click Me!',
+        title: 'OnClick Animation',
+        content: 'Click Me!',
         animateOnClick: 'flash',
     },
 };
 
-export const ButtonWithLink: Story = {
+export const AnimatedCard: Story = {
     args: {
-        text: 'Button as Link',
-        href: 'https://bankkroll.xyz',
-    },
-};
-
-export const DrippyMode: Story = {
-    args: {
-        text: 'Button with Drippy Mode',
-        drippyMode: true,
-    },
-};
-
-export const ExplodedMode: Story = {
-    args: {
-        text: 'Button with Exploded Mode',
-        explodedMode: true,
-    },
-};
-
-// Updated RainingMode story
-export const RainingMode: Story = {
-    args: {
-        text: 'Button with Raining Mode',
-    },
-};
-
-// Updated RainingModeWithCustomization story
-export const RainingModeWithCustomization: Story = {
-    args: {
-        text: 'Button with Custom Raining Mode',
-        rainingMode: true,
-        rainingParticleCount: 20,
-        rainingSpeed: 5,
-        rainingSize: 50,
-        rainingCustomImage: './custom.png',
-    },
-};
-
-export const CoolMode: Story = {
-    args: {
-        text: 'Button with Cool Mode',
-        coolMode: true,
-    },
-};
-
-export const CoolModeWithImage: Story = {
-    args: {
-        text: 'Button with Custom Cool Mode',
-        coolMode: './custom.png',
-    },
-};
-
-export const CoolModeCustomizations: Story = {
-    args: {
-        text: 'Button with Particle Customizations',
-        coolMode: true,
-        direction: 4,
-        particleSize: 100,
-        speedHorz: 5,
-        speedUp: 40,
-        spinSpeed: 40,
-        spinVal: 45,
+        title: 'Animated Card',
+        animation: 'flash',
     },
 };
